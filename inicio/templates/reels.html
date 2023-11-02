@@ -1,0 +1,33 @@
+{% extends "base.html"%}
+
+{% block title_head %}
+<title>Reels</title>
+{% endblock title_head %}
+
+
+{% block h1_header %}
+Reels
+{% endblock h1_header %}
+
+
+
+{% block main %}
+
+<form action="">
+    <input type="text" name="marca" placeholder="Spinit, Okuma...">
+    <input type="submit" value="Buscar">
+</form>
+
+{% if listado_de_reels %}
+{% for reels in listado_de_reels %}
+<ul>
+    <li>{{reels}}</li>
+</ul>
+{% endfor %}
+
+{% else %}
+
+<p>No se encontraron Reels</p>
+
+{% endif %}
+{% endblock main %}

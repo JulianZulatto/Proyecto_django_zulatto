@@ -1,0 +1,33 @@
+{% extends "base.html"%}
+
+{% block title_head %}
+<title>Señuelos</title>
+{% endblock title_head %}
+
+
+{% block h1_header %}
+Señuelos
+{% endblock h1_header %}
+
+
+
+{% block main %}
+
+<form action="">
+    <input type="text" name="marca" placeholder="...">
+    <input type="submit" value="Buscar">
+</form>
+
+{% if listado_de_señuelos %}
+{% for señuelo in listado_de_señuelos %}
+<ul>
+    <li>{{señuelo}}</li>
+</ul>
+{% endfor %}
+
+{% else %}
+
+<p>No se encontraron Señuelos</p>
+
+{% endif %}
+{% endblock main %}
