@@ -1,10 +1,11 @@
 from django.db import models
 
-class Caña_de_pescar(models.Model):
+class CañaDePescar(models.Model):
     marca = models.CharField(max_length=30)
     modelo = models.CharField(max_length=30)
     mango = models.TextField()
     pasa_hilos = models.IntegerField()
+    fecha_creacion = models.DateField(null=True)
     
     def __str__(self):
         return f'{self.id} - {self.marca} - {self.modelo}'
@@ -25,3 +26,4 @@ class Señuelo(models.Model):
     def __str__(self):
         return f'{self.id} - {self.modelo} - {self.color} - {self.anzuelos}'
     
+

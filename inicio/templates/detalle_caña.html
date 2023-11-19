@@ -1,0 +1,27 @@
+{% extends "base.html"%}
+
+{% block title_head %}
+<title>Caña de Pescar{{automoviles.id}}</title>
+{% endblock title_head %}
+
+
+{% block h1_header %}
+Caña de pescar {{cañadepescar.id}}
+{% endblock h1_header %}
+{% block h2_header %}{% endblock h2_header %}
+
+
+{% block main %}
+
+<ul>
+    <li>Marca: {{cañadepescar.marca}}</li>
+    <li>Modelo: {{cañadepescar.modelo}}</li>
+    <li>Mango: {{cañadepescar.mango}}</li>
+    <li>Pasa Hilos: {{cañadepescar.pasa_hilos}}</li>
+    <li>Fecha de Creacion: {{cañadepescar.fecha_creacion}}</li>
+</ul>
+
+{% endblock main %}
+
+
+

@@ -1,22 +1,24 @@
 {% extends "base.html"%}
 
 {% block title_head %}
-<title>Crear Caña</title>
+<title>Eliminar Caña</title>
 {% endblock title_head %}
 
 
 {% block h1_header %}
-Crear Caña
+Eliminar Caña
 {% endblock h1_header %}
 {% block h2_header %}{% endblock h2_header %}
 
 
 {% block main %}
 
+
+
 <form action="" method="POST">
     {% csrf_token %}  
-    {{formulario}}
-    <input type="submit" value="Crear">  
+    Desea eliminar la Caña {{cañadepescar.marca}} - {{cañadepescar.modelo}} - {{cañadepescar.fecha_creacion}}?
+    <input type="submit" value="Confirmar">  
 </form>
 
 {% endblock main %}

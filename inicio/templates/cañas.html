@@ -12,6 +12,10 @@ Cañas de Pesca
 
 
 {% block main %}
+<p>
+    <a href={% url "crear_caña" %}>Crear Caña</a>
+</p>
+
 
 <form action="">
     <input type="text" name="marca" placeholder="Spinit, Okuma...">
@@ -21,7 +25,7 @@ Cañas de Pesca
 {% if listado_de_cañas %}
 {% for caña_de_pescar in listado_de_cañas %}
 <ul>
-    <li>{{caña_de_pescar}}</li>
+    <li>{{caña_de_pescar}} <a href="{% url "actualizar_caña" caña_de_pescar.id %}">Actualizar</a> <a href="{% url "eliminar_caña" caña_de_pescar.id %}">Eliminar</a> <a href="{% url "detalle_caña" caña_de_pescar.id %}">Detalle</a> </li>
 </ul>
 {% endfor %}
 
@@ -31,4 +35,6 @@ Cañas de Pesca
 
 {% endif %}
 {% endblock main %}
+
+
 

@@ -1,7 +1,7 @@
 from django.contrib import admin
-from inicio.models import Caña_de_pescar, Reels, Señuelo
+from inicio.models import CañaDePescar, Reels, Señuelo
 
-admin.site.register(Caña_de_pescar)
+admin.site.register(CañaDePescar)
 admin.site.register(Reels)
 admin.site.register(Señuelo)
 

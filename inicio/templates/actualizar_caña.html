@@ -1,12 +1,12 @@
 {% extends "base.html"%}
 
 {% block title_head %}
-<title>Crear Caña</title>
+<title>Actualizar Caña</title>
 {% endblock title_head %}
 
 
 {% block h1_header %}
-Crear Caña
+Actualizar Caña
 {% endblock h1_header %}
 {% block h2_header %}{% endblock h2_header %}
 
@@ -15,8 +15,8 @@ Crear Caña
 
 <form action="" method="POST">
     {% csrf_token %}  
-    {{formulario}}
-    <input type="submit" value="Crear">  
+    {{form}}
+    <input type="submit" value="Actualizar">  
 </form>
 
 {% endblock main %}

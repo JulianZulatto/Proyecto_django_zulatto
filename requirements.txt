@@ -1,4 +1,9 @@
 asgiref==3.7.2
 Django==4.2.6
+django-ckeditor==6.7.0
+django-js-asset==2.1.0
+paquete-pre-entregas-zulatto @ file:///C:/Users/julian/Desktop/proyectos%20VSC/dist/paquete_pre-entregas_zulatto-0.0.1.tar.gz#sha256=9c43535437055fff4151d2049a3b5c5f394336f2d07c2cb1324e0c04ecb58307
+paquete-zulatto @ file:///C:/Users/julian/Desktop/proyectos%20VSC/dist/paquete_zulatto-0.0.1.tar.gz#sha256=d487b0d0700705cf909a17922ed434c3f882fcb5d2a5eb0b2b5f438b01454393
+Pillow==10.1.0
 sqlparse==0.4.4
 tzdata==2023.3

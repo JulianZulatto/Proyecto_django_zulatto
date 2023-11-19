@@ -1,22 +1,24 @@
 {% extends "base.html"%}
 
 {% block title_head %}
-<title>Crear Caña</title>
+<title>Logout</title>
 {% endblock title_head %}
 
 
 {% block h1_header %}
-Crear Caña
+Logout
 {% endblock h1_header %}
 {% block h2_header %}{% endblock h2_header %}
 
 
 {% block main %}
 
-<form action="" method="POST">
+<form action={% url "login" %} method="POST">
     {% csrf_token %}  
-    {{formulario}}
-    <input type="submit" value="Crear">  
+    <table>
+    {{formulario_de_login}}
+    </table>
+    <input type="submit" value="Cerrar Sesion">  
 </form>
 
 {% endblock main %}

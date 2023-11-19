@@ -1,22 +1,31 @@
 from django.shortcuts import render, redirect
 
-from inicio.models import Caña_de_pescar, Reels, Señuelo
-from inicio.forms import CrearCañaFormulario, CrearReelsFormulario,CrearSeñuelosFormulario
+from inicio.models import CañaDePescar, Reels, Señuelo
+from inicio.forms import CrearCañaFormulario, BaseReelsFormulario,BaseSeñuelosFormulario
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic.detail import DetailView
+from django.urls import reverse_lazy
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic.list import ListView
+
 
 def inicio(request):
     return render(request, 'base.html', {})
 
+@login_required
 def caña_de_pescar(request):
     
     marca_a_buscar = request.GET.get('marca')
     
     if marca_a_buscar:
-        listado_de_cañas = Caña_de_pescar.objects.filter(marca__icontains=marca_a_buscar)
+        listado_de_cañas = CañaDePescar.objects.filter(marca__icontains=marca_a_buscar)
     else:
-        listado_de_cañas = Caña_de_pescar.objects.all()
+        listado_de_cañas = CañaDePescar.objects.all()
         
     return render(request, 'cañas.html', {'listado_de_cañas': listado_de_cañas})
 
+@login_required
 def crear_caña(request):
     if request.method == 'POST':
         formulario = CrearCañaFormulario(request.POST)
@@ -27,9 +36,11 @@ def crear_caña(request):
             modelo = info_limpia.get('modelo')
             mango = info_limpia.get('mango')
             pasa_hilos = info_limpia.get('pasa_hilos')
+            fecha_creacion = info_limpia.get('fecha_creacion')
             
             
-            caña_de_pescar = Caña_de_pescar(marca = marca.lower(), modelo = modelo, mango = mango, pasa_hilos= pasa_hilos)
+            
+            caña_de_pescar = CañaDePescar(marca = marca.lower(), modelo = modelo, mango = mango, pasa_hilos= pasa_hilos, fecha_creacion = fecha_creacion)
             caña_de_pescar.save()
             
             return redirect('cañas') 
@@ -38,6 +49,23 @@ def crear_caña(request):
     
     formulario = CrearCañaFormulario()
     return render(request, 'crear_caña.html', {'formulario': formulario})
+
+class ActualizarCaña(LoginRequiredMixin, UpdateView):
+    model = CañaDePescar
+    template_name = 'actualizar_caña.html'
+    fields = ['marca', 'modelo', 'mango','pasa_hilos', 'fecha_creacion']
+    success_url = reverse_lazy('cañas')
+    
+class DetalleCaña(DetailView):
+    model = CañaDePescar
+    template_name = 'detalle_caña.html'
+    
+class EliminarCaña(LoginRequiredMixin, DeleteView):
+    model = CañaDePescar
+    template_name = 'eliminar_caña.html'
+    success_url = reverse_lazy('cañas')
+    
+
 
 
 def reels(request):
@@ -54,7 +82,7 @@ def reels(request):
 
 def crear_reels(request):
     if request.method == 'POST':
-        formulario = CrearReelsFormulario(request.POST)
+        formulario = BaseReelsFormulario(request.POST)
         if formulario.is_valid():
             info_limpia = formulario.cleaned_data
             
@@ -70,7 +98,7 @@ def crear_reels(request):
         else:
             return render(request, 'crear_reels.html', {'formulario': formulario})
     
-    formulario = CrearReelsFormulario()
+    formulario = BaseReelsFormulario()
     return render(request, 'crear_reels.html', {'formulario': formulario})
 
 def señuelo(request):
@@ -86,7 +114,7 @@ def señuelo(request):
 
 def crear_señuelo(request):
     if request.method == 'POST':
-        formulario = CrearSeñuelosFormulario(request.POST)
+        formulario = BaseSeñuelosFormulario(request.POST)
         if formulario.is_valid():
             info_limpia = formulario.cleaned_data
             
@@ -102,5 +130,6 @@ def crear_señuelo(request):
         else:
             return render(request, 'crear_señuelo.html', {'formulario': formulario})
     
-    formulario = CrearSeñuelosFormulario()
+    formulario = BaseSeñuelosFormulario()
     return render(request, 'crear_señuelo.html', {'formulario': formulario})
+
